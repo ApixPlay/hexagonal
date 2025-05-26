@@ -4,5 +4,7 @@ import { AuthService } from '#user_management/application/services/auth.service'
 export class AuthenticateWithEmailPasswordUseCase {
   constructor(private authService: AuthService) {}
 
-  execute(payload: AuthenticationRequestDTO) {}
+  execute(payload: AuthenticationRequestDTO) {
+    return this.authService.authenticate(payload)
+  }
 }
