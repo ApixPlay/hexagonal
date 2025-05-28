@@ -3,8 +3,6 @@ import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import { Email } from '#user_management/domain/entity/email'
-import { PlainPassword } from '#user_management/domain/entity/plain_password'
 import { UserIdentifier } from '#user_management/domain/user_identifier'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
@@ -23,10 +21,10 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare lastName: string | null
 
   @column()
-  declare email: Email
+  declare email: string
 
   @column({ serializeAs: null })
-  declare password: PlainPassword
+  declare password: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

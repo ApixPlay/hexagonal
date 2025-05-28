@@ -24,6 +24,10 @@ export class User extends AggregateRoot<Properties> {
     return this.props.firstName + ' ' + this.props.lastName
   }
 
+  getEmail(): Email {
+    return this.props.email
+  }
+
   static create(properties: Properties) {
     return new this(properties)
   }

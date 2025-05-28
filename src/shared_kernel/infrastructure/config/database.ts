@@ -3,9 +3,11 @@ import env from '#shared_kernel/infrastructure/env'
 
 const dbConfig = defineConfig({
   connection: 'postgres',
+  prettyPrintDebugQueries: true,
   connections: {
     postgres: {
       client: 'pg',
+      debug: true,
       connection: {
         host: env.get('DB_HOST'),
         port: env.get('DB_PORT'),
