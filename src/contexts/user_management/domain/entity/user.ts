@@ -5,6 +5,8 @@ import { HashedPassword } from '#user_management/domain/entity/hashed_password'
 
 interface Properties {
   id: UserIdentifier
+  firstName: string
+  lastName: string | null
   email: Email
   password: HashedPassword
 }
@@ -16,5 +18,13 @@ export class User extends AggregateRoot<Properties> {
 
   getPassword(): HashedPassword {
     return this.props.password
+  }
+
+  getFullName(): string {
+    return this.props.firstName + ' ' + this.props.lastName
+  }
+
+  static create(properties: Properties) {
+    return new this(properties)
   }
 }

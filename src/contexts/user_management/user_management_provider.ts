@@ -1,7 +1,6 @@
 import type { ApplicationService } from '@adonisjs/core/types'
 import { SessionManagerContract } from '#user_management/application/contracts/session_manager.contract'
 import { SessionManagerAdapter } from '#user_management/infrastructure/adapters/session_manager.adapter'
-import { UserRepository } from '#user_management/application/repositories/user.repository'
 import { PasswordHashingContract } from '#user_management/application/contracts/password_hashing.contract'
 import { PasswordHashingAdapter } from '#user_management/infrastructure/adapters/password_hashing.adapter'
 
