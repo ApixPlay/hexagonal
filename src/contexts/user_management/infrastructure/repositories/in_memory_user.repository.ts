@@ -1,6 +1,6 @@
 import { UserRepository } from '#user_management/application/repositories/user.repository'
-import { User } from '#user_management/domain/entity/user'
-import { Email } from '#user_management/domain/entity/email'
+import { User } from '#user_management/domain/user'
+import { Email } from '#user_management/domain/email'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
 import { UserIdentifier } from '#user_management/domain/user_identifier'
 
@@ -23,5 +23,9 @@ export class InMemoryUserRepository implements UserRepository {
     this.#users.push(user)
 
     return user
+  }
+
+  getAll(): Promise<User[]> {
+    return Promise.resolve(this.#users)
   }
 }

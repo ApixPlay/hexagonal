@@ -1,5 +1,5 @@
-import { PlainPassword } from '#user_management/domain/entity/plain_password'
-import { HashedPassword } from '#user_management/domain/entity/hashed_password'
+import { PlainPassword } from '#user_management/domain/plain_password'
+import { HashedPassword } from '#user_management/domain/hashed_password'
 
 export abstract class PasswordHashingContract {
   abstract hash(password: PlainPassword): Promise<HashedPassword>

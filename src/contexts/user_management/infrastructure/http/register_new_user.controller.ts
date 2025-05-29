@@ -2,8 +2,8 @@ import { HttpContext } from '@adonisjs/core/http'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
 import { AlreadyRegisteredException } from '#user_management/application/exceptions/already_registered.exception'
 import vine from '@vinejs/vine'
-import { Email } from '#user_management/domain/entity/email'
-import { PlainPassword } from '#user_management/domain/entity/plain_password'
+import { Email } from '#user_management/domain/email'
+import { PlainPassword } from '#user_management/domain/plain_password'
 import { UserManagementServiceManager } from '#user_management/infrastructure/user_management_service_manager'
 
 export default class RegisterNewUserController {

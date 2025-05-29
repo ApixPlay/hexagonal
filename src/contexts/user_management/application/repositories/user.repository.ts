@@ -1,5 +1,5 @@
-import { Email } from '#user_management/domain/entity/email'
-import { User } from '#user_management/domain/entity/user'
+import { Email } from '#user_management/domain/email'
+import { User } from '#user_management/domain/user'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
 
 export abstract class UserRepository {

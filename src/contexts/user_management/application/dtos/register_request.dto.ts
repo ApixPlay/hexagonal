@@ -1,5 +1,5 @@
-import { PlainPassword } from '#user_management/domain/entity/plain_password'
-import { Email } from '#user_management/domain/entity/email'
+import { PlainPassword } from '#user_management/domain/plain_password'
+import { Email } from '#user_management/domain/email'
 
 export class RegisterRequestDTO {
   constructor(

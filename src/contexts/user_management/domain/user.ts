@@ -1,7 +1,7 @@
-import { Email } from '#user_management/domain/entity/email'
+import { Email } from '#user_management/domain/email'
 import { AggregateRoot } from '#shared_kernel/domain/aggregate_root'
 import { UserIdentifier } from '#user_management/domain/user_identifier'
-import { HashedPassword } from '#user_management/domain/entity/hashed_password'
+import { HashedPassword } from '#user_management/domain/hashed_password'
 
 interface Properties {
   id: UserIdentifier

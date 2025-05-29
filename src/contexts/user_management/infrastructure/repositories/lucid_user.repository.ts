@@ -1,9 +1,9 @@
 import { UserRepository } from '#user_management/application/repositories/user.repository'
-import { User as UserEntity } from '#user_management/domain/entity/user'
-import { Email } from '#user_management/domain/entity/email'
+import { User as UserEntity } from '#user_management/domain/user'
+import { Email } from '#user_management/domain/email'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
 import User from '#user_management/infrastructure/database/models/user'
-import { PlainPassword } from '#user_management/domain/entity/plain_password'
+import { PlainPassword } from '#user_management/domain/plain_password'
 
 export class LucidUserRepository implements UserRepository {
   async findByEmail(email: Email): Promise<UserEntity | null> {
