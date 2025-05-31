@@ -31,7 +31,11 @@ export class AuthService {
       throw new InvalidCredentialsException()
     }
 
+    console.log(await this.check())
+
     await this.sessionManager.createSession(user.getIdentifier())
+
+    console.log(await this.check())
   }
 
   async register(payload: RegisterRequestDTO) {
@@ -42,5 +46,17 @@ export class AuthService {
     }
 
     await this.userRepository.createUser(payload)
+  }
+
+  async check(): Promise<boolean> {
+    const user = await this.sessionManager.retrieveUserId()
+
+    console.log(user)
+
+    if (!user) {
+      return false
+    }
+
+    return true
   }
 }

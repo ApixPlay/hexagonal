@@ -18,7 +18,6 @@ test.group('Register user UseCase', () => {
     )
 
     const registerUser = new RegisterNewUserUseCase(authService)
-
     await registerUser.execute({
       firstName: 'John',
       lastName: 'Doe',
@@ -27,6 +26,7 @@ test.group('Register user UseCase', () => {
     })
 
     const user = await userRepository.findByEmail(Email.fromString('test@test.fr'))
+
     assert.isNotNull(user)
     assert.equal(user?.props.firstName, 'John')
   })

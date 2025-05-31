@@ -15,6 +15,6 @@ export class PasswordHashingAdapter implements PasswordHashingContract {
   }
 
   async verify(password: PlainPassword, hashedPassword: HashedPassword): Promise<boolean> {
-    return hash.verify(password.toString(), hashedPassword.toString())
+    return hash.verify(hashedPassword.toString(), password.toString())
   }
 }

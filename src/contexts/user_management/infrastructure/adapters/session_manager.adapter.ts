@@ -22,7 +22,7 @@ export class SessionManagerAdapter implements SessionManagerContract {
     this.#session.put(kUserIdSessionKey, userId.toString())
   }
 
-  /*async retrieveUserId(): Promise<UserIdentifier | null> {
+  async retrieveUserId(): Promise<UserIdentifier | null> {
     await this.#initiateSession()
 
     const userId = await this.#session.get(kUserIdSessionKey)
@@ -32,7 +32,7 @@ export class SessionManagerAdapter implements SessionManagerContract {
     }
 
     return UserIdentifier.fromString(userId)
-  }*/
+  }
 
   /*async deleteSession(): Promise<void> {
     await this.#initiateSession()
