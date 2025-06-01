@@ -5,17 +5,12 @@ import { AuthService } from '#user_management/application/services/auth.service'
 import { PasswordHashingAdapter } from '#user_management/infrastructure/adapters/password_hashing.adapter'
 import { Email } from '#user_management/domain/email'
 import { PlainPassword } from '#user_management/domain/plain_password'
-import { InMemorySessionManagerAdapter } from '#user_management/infrastructure/adapters/in_memory_session_manager.adapter'
 
 test.group('Register user UseCase', () => {
   test('should register a new user', async ({ assert }) => {
     const userRepository = new InMemoryUserRepository()
 
-    const authService = new AuthService(
-      userRepository,
-      new PasswordHashingAdapter(),
-      new InMemorySessionManagerAdapter()
-    )
+    const authService = new AuthService(userRepository, new PasswordHashingAdapter())
 
     const registerUser = new RegisterNewUserUseCase(authService)
     await registerUser.execute({

@@ -2,15 +2,13 @@ import { AuthenticationRequestDTO } from '#user_management/application/dtos/auth
 import { UserRepository } from '#user_management/application/repositories/user.repository'
 import { InvalidCredentialsException } from '#user_management/application/exceptions/invalid_credentials.exception'
 import { PasswordHashingContract } from '#user_management/application/contracts/password_hashing.contract'
-import { SessionManagerContract } from '#user_management/application/contracts/session_manager.contract'
 import { AlreadyRegisteredException } from '#user_management/application/exceptions/already_registered.exception'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
 
 export class AuthService {
   constructor(
     private userRepository: UserRepository,
-    private passwordHashingContract: PasswordHashingContract,
-    private sessionManager: SessionManagerContract
+    private passwordHashingContract: PasswordHashingContract
   ) {}
 
   async authenticate(payload: AuthenticationRequestDTO) {
@@ -31,11 +29,9 @@ export class AuthService {
       throw new InvalidCredentialsException()
     }
 
-    console.log(await this.check())
+    //await this.sessionManager.createSession(user.getIdentifier())
 
-    await this.sessionManager.createSession(user.getIdentifier())
-
-    console.log(await this.check())
+    return user
   }
 
   async register(payload: RegisterRequestDTO) {
@@ -48,7 +44,7 @@ export class AuthService {
     await this.userRepository.createUser(payload)
   }
 
-  async check(): Promise<boolean> {
+  /*async check(): Promise<boolean> {
     const user = await this.sessionManager.retrieveUserId()
 
     console.log(user)
@@ -58,5 +54,5 @@ export class AuthService {
     }
 
     return true
-  }
+  }*/
 }

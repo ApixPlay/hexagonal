@@ -6,7 +6,7 @@ import { UserManagementServiceManager } from '#user_management/infrastructure/us
 export default class AuthenticateWithEmailPasswordController {
   //constructor(private useCase: AuthenticateWithEmailPasswordUseCase) {}
 
-  async execute({ request, response, session }: HttpContext) {
+  async execute({ request, response, auth }: HttpContext) {
     const useCase = UserManagementServiceManager.getAuthenticateWithEmailPasswordUseCase()
 
     const payload = request.only(['email', 'password'])
@@ -14,9 +14,9 @@ export default class AuthenticateWithEmailPasswordController {
     const dto = new AuthenticationRequestDTO(payload.email, payload.password)
 
     try {
-      await useCase.execute(dto)
+      const user = await useCase.execute(dto)
 
-      console.log(session.get('user_management::user_id'))
+      await auth.use('web').login(user)
     } catch (error) {
       if (error instanceof InvalidCredentialsException) {
         /*session.flash('error', error.serialize())
