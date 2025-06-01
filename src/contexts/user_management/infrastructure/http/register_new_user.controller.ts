@@ -4,12 +4,12 @@ import { AlreadyRegisteredException } from '#user_management/application/excepti
 import vine from '@vinejs/vine'
 import { Email } from '#user_management/domain/email'
 import { PlainPassword } from '#user_management/domain/plain_password'
-import { AuthenticateWithEmailPasswordUseCase } from '#user_management/application/use_cases/authenticate_with_email_password.usecase'
 import { inject } from '@adonisjs/core'
+import { RegisterNewUserUseCase } from '#user_management/application/use_cases/register_new_user.usecase'
 
 @inject()
 export default class RegisterNewUserController {
-  constructor(private useCase: AuthenticateWithEmailPasswordUseCase) {}
+  constructor(private useCase: RegisterNewUserUseCase) {}
 
   static validator = vine.compile(
     vine.object({

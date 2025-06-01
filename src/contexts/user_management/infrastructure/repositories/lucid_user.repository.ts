@@ -18,7 +18,7 @@ export class LucidUserRepository implements UserRepository {
       firstName: user.firstName,
       lastName: user.lastName,
       email: Email.fromString(user.email),
-      password: PlainPassword.fromString(user.password),
+      password: user.password !== null ? PlainPassword.fromString(user.password) : null,
     })
   }
 
@@ -27,7 +27,8 @@ export class LucidUserRepository implements UserRepository {
       email: payload.email.toString(),
       firstName: payload.firstName,
       lastName: payload.lastName,
-      password: payload.password.toString(),
+      password: payload.password !== null ? payload.password.toString() : null,
+      isEmailVerified: payload.isEmailVerified,
     })
 
     return UserEntity.create({
@@ -35,7 +36,7 @@ export class LucidUserRepository implements UserRepository {
       firstName: user.firstName,
       lastName: user.lastName,
       email: Email.fromString(user.email),
-      password: PlainPassword.fromString(user.password),
+      password: user.password !== null ? PlainPassword.fromString(user.password) : null,
     })
   }
 }

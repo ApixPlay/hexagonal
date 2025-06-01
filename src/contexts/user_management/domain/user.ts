@@ -8,7 +8,8 @@ interface Properties {
   firstName: string
   lastName: string | null
   email: Email
-  password: HashedPassword
+  password: HashedPassword | null
+  isEmailVerified?: boolean
 }
 
 export class User extends AggregateRoot<Properties> {
@@ -16,7 +17,7 @@ export class User extends AggregateRoot<Properties> {
     return this.props.id
   }
 
-  getPassword(): HashedPassword {
+  getPassword(): HashedPassword | null {
     return this.props.password
   }
 

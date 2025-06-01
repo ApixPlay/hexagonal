@@ -6,6 +6,7 @@ export class RegisterRequestDTO {
     public email: Email,
     public firstName: string,
     public lastName: string | null,
-    public password: PlainPassword
+    public password: PlainPassword | null,
+    public isEmailVerified?: boolean
   ) {}
 }

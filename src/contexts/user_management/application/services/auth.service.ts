@@ -22,13 +22,15 @@ export class AuthService {
       throw new InvalidCredentialsException()
     }
 
-    const isPasswordValid = await this.passwordHashingContract.verify(
-      payload.password,
-      user.getPassword()
-    )
+    if (user.props.password) {
+      const isPasswordValid = await this.passwordHashingContract.verify(
+        payload.password,
+        user.getPassword()!
+      )
 
-    if (!isPasswordValid) {
-      throw new InvalidCredentialsException()
+      if (!isPasswordValid) {
+        throw new InvalidCredentialsException()
+      }
     }
 
     //await this.sessionManager.createSession(user.getIdentifier())
@@ -45,16 +47,4 @@ export class AuthService {
 
     await this.userRepository.createUser(payload)
   }
-
-  /*async check(): Promise<boolean> {
-    const user = await this.sessionManager.retrieveUserId()
-
-    console.log(user)
-
-    if (!user) {
-      return false
-    }
-
-    return true
-  }*/
 }
