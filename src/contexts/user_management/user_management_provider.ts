@@ -3,7 +3,7 @@ import { SessionManagerContract } from '#user_management/application/contracts/s
 import { SessionManagerAdapter } from '#user_management/infrastructure/adapters/session_manager.adapter'
 import { PasswordHashingContract } from '#user_management/application/contracts/password_hashing.contract'
 import { PasswordHashingAdapter } from '#user_management/infrastructure/adapters/password_hashing.adapter'
-import { UserRepository } from '#user_management/application/repositories/user.repository'
+import { UserRepository } from '#user_management/domain/repositories/user.repository'
 import { LucidUserRepository } from '#user_management/infrastructure/repositories/lucid_user.repository'
 
 export default class UserManagementProvider {

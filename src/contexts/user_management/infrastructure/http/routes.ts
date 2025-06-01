@@ -1,5 +1,7 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#shared_kernel/infrastructure/http/kernel'
+const LogoutUserController = () =>
+  import('#user_management/infrastructure/http/logout_user.controller')
 
 const AuthenticateWithEmailPasswordController = () =>
   import('#user_management/infrastructure/http/authenticate_with_email_password.controller')
@@ -14,3 +16,5 @@ router
       .as('auth.login')
   })
   .middleware(middleware.guest())
+
+router.post('/auth/logout', [LogoutUserController]).as('auth.logout')

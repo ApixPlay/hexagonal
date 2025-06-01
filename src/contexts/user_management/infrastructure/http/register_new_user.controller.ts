@@ -4,9 +4,13 @@ import { AlreadyRegisteredException } from '#user_management/application/excepti
 import vine from '@vinejs/vine'
 import { Email } from '#user_management/domain/email'
 import { PlainPassword } from '#user_management/domain/plain_password'
-import { UserManagementServiceManager } from '#user_management/infrastructure/user_management_service_manager'
+import { AuthenticateWithEmailPasswordUseCase } from '#user_management/application/use_cases/authenticate_with_email_password.usecase'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export default class RegisterNewUserController {
+  constructor(private useCase: AuthenticateWithEmailPasswordUseCase) {}
+
   static validator = vine.compile(
     vine.object({
       email: vine.string().email(),
@@ -17,8 +21,6 @@ export default class RegisterNewUserController {
   )
 
   async execute({ request, response }: HttpContext) {
-    const useCase = UserManagementServiceManager.getRegisterNewUserUseCase()
-
     const payload = await request.validateUsing(RegisterNewUserController.validator)
 
     const dto = new RegisterRequestDTO(
@@ -29,7 +31,7 @@ export default class RegisterNewUserController {
     )
 
     try {
-      await useCase.execute(dto)
+      await this.useCase.execute(dto)
     } catch (error) {
       if (error instanceof AlreadyRegisteredException) {
         //session.flash('error', error.serialize())

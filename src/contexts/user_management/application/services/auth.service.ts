@@ -1,10 +1,12 @@
 import { AuthenticationRequestDTO } from '#user_management/application/dtos/authentication_request.dto'
-import { UserRepository } from '#user_management/application/repositories/user.repository'
+import { UserRepository } from '#user_management/domain/repositories/user.repository'
 import { InvalidCredentialsException } from '#user_management/application/exceptions/invalid_credentials.exception'
 import { PasswordHashingContract } from '#user_management/application/contracts/password_hashing.contract'
 import { AlreadyRegisteredException } from '#user_management/application/exceptions/already_registered.exception'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
+import { inject } from '@adonisjs/core'
 
+@inject()
 export class AuthService {
   constructor(
     private userRepository: UserRepository,

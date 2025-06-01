@@ -1,4 +1,4 @@
-import { UserRepository } from '#user_management/application/repositories/user.repository'
+import { UserRepository } from '#user_management/domain/repositories/user.repository'
 import { User as UserEntity } from '#user_management/domain/user'
 import { Email } from '#user_management/domain/email'
 import { RegisterRequestDTO } from '#user_management/application/dtos/register_request.dto'
